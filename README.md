@@ -42,4 +42,4 @@ XAdES Signer is project for sign XML Document with Certificate.
 
 ## More Detail
 
-- การใช้งาน XAdES Signer สามารถศึกษาได้จากไฟล์คู่มีอการใช้งานดังนี้ /XAdESSigner/Manual/04_Manual_XAdESSigner (.NET).docx
+- More usage please refer to [Original Manual.](<XAdESSigner/Manual/04_Manual_XAdESSigner%20(.NET).docx>)
