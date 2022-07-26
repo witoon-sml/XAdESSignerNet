@@ -1,16 +1,10 @@
 ﻿using FirmaXadesNet;
-using FirmaXadesNet.Crypto;
 using FirmaXadesNet.Signature;
 using FirmaXadesNet.Signature.Parameters;
 using FirmaXadesNet.Upgraders;
 using FirmaXadesNet.Upgraders.Parameters;
-using pkcs;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 
 namespace sign
 {
