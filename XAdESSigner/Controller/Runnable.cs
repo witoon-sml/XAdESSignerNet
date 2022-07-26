@@ -50,7 +50,7 @@ namespace Controller
 			string pkcs11LibraryPath = paramCtrl.getParameterValue("-pkcs11LibraryPath");
 			string pkcs11TokenPin = paramCtrl.getParameterValue("-pkcs11Pin");
 			string pkcs11KeyStorePassword = paramCtrl.getParameterValue("-pkcs11KeyStorePassword");
-			string pkcs11SearchKeyword = paramCtrl.getParameterValue("-pkcs11SeachKeyword");
+			string pkcs11SearchKeyword = paramCtrl.getParameterValue("-pkcs11SearchKeyword");
 
 			//TimeStamp URL
 			TimeStampType timeStampingType;
