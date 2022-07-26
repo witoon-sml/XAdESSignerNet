@@ -65,11 +65,11 @@ namespace sign
                 string outputFilePath = null;
                 if (outputSuffix != null)
                 {
-                    outputFilePath = outputFolderPath + "/" + fileSpec.FileNameWithoutExtension + outputSuffix + "." + fileSpec.FileExtension;
+                    outputFilePath = outputFolderPath + "/" + fileSpec.FileNameWithoutExtension + outputSuffix + fileSpec.FileExtension;
                 }
                 else
                 {
-                    outputFilePath = outputFolderPath + "/" + fileSpec.FileNameWithoutExtension + "." + fileSpec.FileExtension;
+                    outputFilePath = outputFolderPath + "/" + fileSpec.FileNameWithoutExtension + fileSpec.FileExtension;
                 }
 
                 // Call to generate signature and save output file
@@ -132,11 +132,11 @@ namespace sign
                 string outputFilePath = null;
                 if (outputSuffix != null)
                 {
-                    outputFilePath = outputFolderPath + "/" + fileSpec.FileNameWithoutExtension + outputSuffix + "." + fileSpec.FileExtension;
+                    outputFilePath = outputFolderPath + "/" + fileSpec.FileNameWithoutExtension + outputSuffix + fileSpec.FileExtension;
                 }
                 else
                 {
-                    outputFilePath = outputFolderPath + "/" + fileSpec.FileNameWithoutExtension + "." + fileSpec.FileExtension;
+                    outputFilePath = outputFolderPath + "/" + fileSpec.FileNameWithoutExtension + fileSpec.FileExtension;
                 }
 
                 // Call to generate signature and save output file
@@ -263,6 +263,9 @@ namespace sign
                 var rsaCsp = new RSACryptoServiceProvider(cspParameters);
                 certificate.PrivateKey = rsaCsp;
                 signatureParameter.Signer = new Signer(certificate);
+            }else if (pKCSInstance == null)
+            {
+                signatureParameter.Signer = new Signer(FirmaXadesNet.Utils.CertUtil.SelectCertificate());
             }
             // Unknown PKCS instance
             else

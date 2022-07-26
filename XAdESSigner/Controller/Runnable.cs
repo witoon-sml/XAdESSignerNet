@@ -41,6 +41,9 @@ namespace Controller
 			string outputFolder = paramCtrl.getParameterValue("-outputFolder");
 			string outputSuffix = paramCtrl.getParameterValue("-outputSuffix");
 
+			//Self-Select Certificate
+			string selfSelectCert = paramCtrl.getParameterValue("-selfSelectCert");
+
 			//PKCS12 Parameter
 			string pkcs12FilePath = paramCtrl.getParameterValue("-pkcs12FilePath");
 			string pkcs12Password = paramCtrl.getParameterValue("-pkcs12Password");
@@ -163,8 +166,12 @@ namespace Controller
 					KeyStorePassword = pkcs11KeyStorePassword,
 					SearchPhase = pkcs11SearchKeyword
 				};
-			}
-			else
+            }
+            else if (selfSelectCert != null && selfSelectCert.Equals("TRUE", StringComparison.InvariantCultureIgnoreCase))
+            {
+
+            }
+            else
 			{
 				throw new Exception("Incomplete certificate input");
 			}
@@ -198,6 +205,18 @@ namespace Controller
 						(new XAdESSigner()).SignTOnce(inputFile, outputFile, pkcs11,
 							digestAlgorithm, SignaturePackaging.ENVELOPED, null, timeStamping);
 					}
+				}else
+				{
+					if (signLevel.Equals("BES", StringComparison.InvariantCultureIgnoreCase))
+					{
+						(new XAdESSigner()).SignBESOnce(inputFile, outputFile, null,
+							digestAlgorithm, SignaturePackaging.ENVELOPED, null);
+					}
+					else if (signLevel.Equals("T", StringComparison.InvariantCultureIgnoreCase))
+					{
+						(new XAdESSigner()).SignTOnce(inputFile, outputFile, null,
+							digestAlgorithm, SignaturePackaging.ENVELOPED, null, timeStamping);
+					}
 				}
 			}
 			else if (signType.Equals("multiple", StringComparison.InvariantCultureIgnoreCase))
@@ -225,6 +244,19 @@ namespace Controller
 					else if (signLevel.Equals("T", StringComparison.InvariantCultureIgnoreCase))
 					{
 						(new XAdESSigner()).SignTMultiple(inputFolder, outputFolder, outputSuffix, pkcs11,
+							digestAlgorithm, SignaturePackaging.ENVELOPED, null, timeStamping);
+					}
+                }
+                else
+				{
+					if (signLevel.Equals("BES", StringComparison.InvariantCultureIgnoreCase))
+					{
+						(new XAdESSigner()).SignBESMultiple(inputFolder, outputFolder, outputSuffix, null,
+							digestAlgorithm, SignaturePackaging.ENVELOPED, null);
+					}
+					else if (signLevel.Equals("T", StringComparison.InvariantCultureIgnoreCase))
+					{
+						(new XAdESSigner()).SignTMultiple(inputFolder, outputFolder, outputSuffix, null,
 							digestAlgorithm, SignaturePackaging.ENVELOPED, null, timeStamping);
 					}
 				}
